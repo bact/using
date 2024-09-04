@@ -26,7 +26,7 @@
     
     
       
-        <title>Using SPDX license list short identifiers in source files - Using SPDX</title>
+        <title>Using SPDX License List short identifiers in source files - Using SPDX</title>
       
     
     
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Using SPDX license list short identifiers in source files
+              Using SPDX License List short identifiers in source files
             
           </span>
         </div>
@@ -314,7 +314,7 @@
           
   
   <span class="md-ellipsis">
-    Using SPDX license list short identifiers in source files
+    Using SPDX License List short identifiers in source files
   </span>
   
 
@@ -325,7 +325,7 @@
         
   
   <span class="md-ellipsis">
-    Using SPDX license list short identifiers in source files
+    Using SPDX License List short identifiers in source files
   </span>
   
 
@@ -515,7 +515,7 @@
   
 
 
-<h1 id="using-spdx-license-list-short-identifiers-in-source-files">Using SPDX license list short identifiers in source files</h1>
+<h1 id="using-spdx-license-list-short-identifiers-in-source-files">Using SPDX License List short identifiers in source files</h1>
 <p>TODO: update for SPDXv3</p>
 <h2 id="introduction">Introduction</h2>
 <p>Identifying the license for open source software is critical for both reporting purposes and license compliance. However, determining the license can sometimes be difficult due to a lack of information or ambiguous information. Even when licensing information is present, a lack of consistent notation can make automating the task of license detection very difficult, thus requiring vast amounts of human effort.</p>
@@ -533,13 +533,19 @@
 </ul>
 <p>If using SPDX short identifiers in individual files, it is recommended to reproduce the full license in the projects LICENSE file and indicate that SPDX short identifiers are being used to refer to it. For links to projects illustrating these scenarios, see <a href="https://spdx.dev/ids-where">https://spdx.dev/ids-where</a>.</p>
 <h2 id="format-for-spdx-license-identifier">Format for <code>SPDX-License-Identifier</code></h2>
-<p>The <code>SPDX-License-Identifier</code> tag declares the license the file is under and should be placed at or near the top of the file in a comment. </p>
-<p>The SPDX License Identifier syntax may consist of a single license (represented by a short identifier from the <a href="https://spdx.org/licenses/">SPDX license list</a>) or a compound set of licenses (represented by joining together multiple licenses using the license expression syntax).</p>
+<p>The <code>SPDX-License-Identifier</code> tag declares the license the file is under and should be placed at or near the top of the file in a comment.</p>
+<p>The SPDX License Identifier syntax may consist of a single license
+(represented by a short identifier from the
+<a href="https://spdx.org/licenses/">SPDX License List</a>) or a compound set of licenses
+(represented by joining together multiple licenses using the license expression
+syntax).</p>
 <p>The tag should appear on its own line in the source file, generally as part of a comment.</p>
 <div class="highlight"><pre><span></span><code>SPDX-License-Identifier: &lt;SPDX License Expression&gt;
 </code></pre></div>
 <h2 id="representing-single-license">Representing single license</h2>
-<p>A single license is represented by using the short identifier from <a href="https://spdx.org/licenses/">SPDX license list</a>, optionally with a unary "+" operator following it to indicate "or later" versions may be applicable.</p>
+<p>A single license is represented by using the short identifier from
+<a href="https://spdx.org/licenses/">SPDX License List</a>, optionally with a unary "+"
+operator following it to indicate "or later" versions may be applicable.</p>
 <p>Examples:</p>
 <div class="highlight"><pre><span></span><code>SPDX-License-Identifier: CDDL-1.0+
 SPDX-License-Identifier: MIT
