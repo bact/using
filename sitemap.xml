@@ -21,15 +21,15 @@
          <lastmod>2024-09-04</lastmod>
     </url>
     <url>
-         <loc>https://spdx.github.io/using/tags/</loc>
-         <lastmod>2024-09-04</lastmod>
-    </url>
-    <url>
          <loc>https://spdx.github.io/using/using-spdx-short-id-in-source-files/</loc>
          <lastmod>2024-09-04</lastmod>
     </url>
     <url>
          <loc>https://spdx.github.io/using/using-spdx-to-comply-with-norms/</loc>
+         <lastmod>2024-09-04</lastmod>
+    </url>
+    <url>
+         <loc>https://spdx.github.io/using/tags/</loc>
          <lastmod>2024-09-04</lastmod>
     </url>
 </urlset>
