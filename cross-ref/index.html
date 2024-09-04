@@ -86,7 +86,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Using SPDX" class="md-header__button md-logo" aria-label="Using SPDX" data-md-component="logo">
       
-  <img src="../images/spdx-logo.svg" alt="logo">
+  <img src="../images/logo-white.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -192,7 +192,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Using SPDX" class="md-nav__button md-logo" aria-label="Using SPDX" data-md-component="logo">
       
-  <img src="../images/spdx-logo.svg" alt="logo">
+  <img src="../images/logo-white.svg" alt="logo">
 
     </a>
     Using SPDX
@@ -410,6 +410,26 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browse by tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -467,6 +487,23 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">cross-reference</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">v3.0</span>
+    
+  
+</nav>
+
 
   
     <a href="https://github.com/spdx/using/edit/main/docs/cross-ref.md" title="Edit this page" class="md-content__button md-icon">
@@ -482,7 +519,7 @@
 (e.g. cross reference).</p>
 <p>If you do would like to construct the complete example documents from this
 Markdown file, use the following command:</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>cross-reference.md<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN{flag=0} /^```json/, $0==&quot;```&quot; { if (/^---$/){flag++} else if ($0 !~ /^```.*/ ) print $0 &gt; &quot;doc-&quot; flag &quot;.spdx.json&quot;}&#39;</span>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>cross-ref.md<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN{flag=0} /^```json/, $0==&quot;```&quot; { if (/^---$/){flag++} else if ($0 !~ /^```.*/ ) print $0 &gt; &quot;doc-&quot; flag &quot;.spdx.json&quot;}&#39;</span>
 </code></pre></div>
 <h2 id="linking-via-spdxid">Linking via spdxId</h2>
 <p>It is frequently desired (and necessary) to reference an SPDX 3
@@ -672,6 +709,9 @@ needed to import it earlier:</p>
 
 
 
+
+  
+  
 
 
 
