@@ -16,7 +16,7 @@ plugins:
 - search
 - social:
     cards_layout_options:
-      logo: docs/images/logo-white.svg
+      logo: docs/images/logo-color.svg
 - tags:
     tags_file: tags.md
 markdown_extensions:
