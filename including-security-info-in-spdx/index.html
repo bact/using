@@ -1,0 +1,1061 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Information on how to use the System Package Data Exchange specification">
+      
+      
+        <meta name="author" content="The Linux Foundation and its Contributors.">
+      
+      
+        <link rel="canonical" href="https://spdx.github.io/using/including-security-info-in-spdx/">
+      
+      
+        <link rel="prev" href="../cross-ref/">
+      
+      
+        <link rel="next" href="../using-spdx-short-id-in-source-files/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Including security information in a SPDX document - Using SPDX</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#including-security-information-in-a-spdx-document" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Using SPDX" class="md-header__button md-logo" aria-label="Using SPDX" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Using SPDX
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Including security information in a SPDX document
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/spdx/using/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Using SPDX" class="md-nav__button md-logo" aria-label="Using SPDX" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Using SPDX
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/spdx/using/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cross-ref/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross referencing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Including security information in a SPDX document
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Including security information in a SPDX document
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#g1-external-references-and-external-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1 External References and External Identifiers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g11-linking-to-an-advisory" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.1 Linking to an Advisory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g12-linking-to-a-csaf-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.2 Linking to a CSAF Document
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G.1.2 Linking to a CSAF Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#g121-linking-to-a-csaf-vex" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.2.1 Linking to a CSAF VEX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g122-linking-to-a-csaf-advisory" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.2.2 Linking to a CSAF Advisory
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g13-linking-to-cyclonedx-security-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.3 Linking to CycloneDX Security Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g14-linking-to-an-osv" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.4 Linking to an OSV
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g15-linking-to-an-omnibor-formerly-known-as-gitbom" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.5 Linking to an OmniBOR (formerly known as GitBOM)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g16-linking-to-a-vulnerability-disclosure-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.6 Linking to a vulnerability disclosure document
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g17-linking-to-a-code-fix-for-a-security-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.7 Linking to a Code Fix for a Security Issue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g18-linking-to-any-security-related-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.8 Linking to any Security Related Document
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g19-linking-to-a-vulnerability-disclosure-report-vdr" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.9 Linking to a Vulnerability Disclosure Report (VDR)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-spdx-short-id-in-source-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using SPDX license list short identifiers in source files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-spdx-to-comply-with-norms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using SPDX license list short identifiers in source files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diffs-from-previous-editions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differences from previous editions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#g1-external-references-and-external-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1 External References and External Identifiers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g11-linking-to-an-advisory" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.1 Linking to an Advisory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g12-linking-to-a-csaf-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.2 Linking to a CSAF Document
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G.1.2 Linking to a CSAF Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#g121-linking-to-a-csaf-vex" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.2.1 Linking to a CSAF VEX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g122-linking-to-a-csaf-advisory" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.2.2 Linking to a CSAF Advisory
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g13-linking-to-cyclonedx-security-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.3 Linking to CycloneDX Security Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g14-linking-to-an-osv" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.4 Linking to an OSV
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g15-linking-to-an-omnibor-formerly-known-as-gitbom" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.5 Linking to an OmniBOR (formerly known as GitBOM)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g16-linking-to-a-vulnerability-disclosure-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.6 Linking to a vulnerability disclosure document
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g17-linking-to-a-code-fix-for-a-security-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.7 Linking to a Code Fix for a Security Issue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g18-linking-to-any-security-related-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.8 Linking to any Security Related Document
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g19-linking-to-a-vulnerability-disclosure-report-vdr" class="md-nav__link">
+    <span class="md-ellipsis">
+      G.1.9 Linking to a Vulnerability Disclosure Report (VDR)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/spdx/using/edit/main/using/including-security-info-in-spdx.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="including-security-information-in-a-spdx-document">Including security information in a SPDX document</h1>
+<p>The flexibility of SPDX 3.0 allows users to either link SBOMs to external security vulnerability data or to embed security vulnerability information in the SPDX 3.0 data format. For more details about the differences, read <a href="https://spdx.dev/capturing-software-vulnerability-data-in-spdx-3-0/">"Capturing Software Vulnerability Data in SPDX 3.0"</a>.</p>
+<h2 id="g1-external-references-and-external-identifiers">G.1 External References and External Identifiers</h2>
+<p>SPDX 3.0 has the concept of an <a href="https://github.com/spdx/spdx-3-model/blob/main/model/Core/Classes/ExternalRef.md"><strong>External Reference</strong></a> for an Element which points to a general resource outside the scope of the SPDX-3.0 content that provides additional context or information about an Element.</p>
+<p>The specification for External Reference types has many <a href="https://github.com/spdx/spdx-3-model/blob/main/model/Core/Vocabularies/ExternalRefType.md">type options</a>, a large handful of which pertain specifically to security use cases:</p>
+<ul>
+<li>cwe</li>
+<li>secureSoftwareAttestation</li>
+<li>securityAdvisory</li>
+<li>securityAdversaryModel</li>
+<li>securityFix</li>
+<li>securityOther</li>
+<li>securityPenTestReport</li>
+<li>securityPolicy</li>
+<li>securityThreatModel</li>
+<li>vulnerabilityDisclosureReport</li>
+<li>vulnerabilityExploitabilityAssessment</li>
+</ul>
+<p>SPDX 3.0 also has the concept of <a href="https://github.com/spdx/spdx-3-model/blob/main/model/Core/Classes/ExternalIdentifier.md"><strong>External Identifier</strong></a> which should be used in cases where an identifier scheme exists and is already defined for an Element outside of SPDX-3.0.</p>
+<p>There are several External Identifier <a href="https://github.com/spdx/spdx-3-model/blob/main/model/Core/Vocabularies/ExternalIdentifierType.md">types</a> that may be used in a security context:</p>
+<ul>
+<li>cpe22</li>
+<li>cpe23</li>
+<li>cve</li>
+<li>packageUrl</li>
+<li>securityOther</li>
+</ul>
+<p>This section provides usage scenarios of how to leverage the Security External References and External Identifiers specified above to refer to external security information. Examples of how to use each category can be found in the <a href="https://github.com/spdx/spdx-3-model/tree/main/model/Security/Classes">Security/Classes</a> pages. Multiple instances and types of external security information may be included within a SPDX document.</p>
+<h2 id="g11-linking-to-an-advisory">G.1.1 Linking to an Advisory</h2>
+<p>To reference a Common Vulnerabilities and Exposures (CVE) advisory applicable to a package, you must first create a <a href="https://github.com/spdx/spdx-3-model/blob/main/model/Security/Classes/Vulnerability.md">Vulnerability Element</a>. You can then use ExternalIdentifiers or ExternalRefs to supplement the CVE with associated external metadata.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;security_Vulnerability&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:cve-2020-2849&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Use of a Broken or Risky Cryptographic Algorithm&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The npm package `elliptic` before version 6.5.4 are vulnerable to Cryptographic Issues via the secp256k1 implementation in elliptic/ec/key.js. There is no check to confirm that the public key point passed into the derive function actually exists on the secp256k1 curve. This results in the potential for the private key used in this implementation to be revealed after a number of ECDH operations are performed.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;security_modifiedTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-03-08T16:06:43Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;security_publishedTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-03-08T16:02:50Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalIdentifier&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalIdentifierType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cve&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CVE-2020-2849&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifierLocator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28498&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;https://www.cve.org/CVERecord?id=CVE-2020-28498&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;issuingAuthority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:agent-cve.org&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalIdentifier&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalIdentifierType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityOther&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GHSA-r9p9-mrjm-926w&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifierLocator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/advisories/GHSA-r9p9-mrjm-926w&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityAdvisory&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://nvd.nist.gov/vuln/detail/CVE-2020-28498&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityAdvisory&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://ubuntu.com/security/CVE-2020-28498&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityOther&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/indutny/elliptic/pull/244/commits&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g12-linking-to-a-csaf-document">G.1.2 Linking to a CSAF Document</h2>
+<p>To reference <a href="https://docs.oasis-open.org/csaf/csaf/v2.0/cs01/csaf-v2.0-cs01.html">CSAF</a> formatted security information see below for examples.</p>
+<h3 id="g121-linking-to-a-csaf-vex">G.1.2.1 Linking to a CSAF VEX</h3>
+<p>To reference a CSAF VEX document, include an external reference of type <code>vulnerabilityExploitabilityAssessment</code> on the Vulnerability Element that encapsulates the CVE described in the CSAF VEX document.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;security_Vulnerability&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:vuln-2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cve-2021-44228&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;security_modifiedTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-03-08T16:02:43Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;security_publishedTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-03-08T16:06:50Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalIdentifier&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalIdentifierType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cve&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CVE-2021-44228&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifierLocator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-44228&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;https://www.cve.org/CVERecord?id=CVE-2021-44228&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;issuingAuthority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://spdx.dev/agent-cve.org&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vulnerabilityExploitabilityAssessment&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/oasis-tcs/csaf/blob/master/csaf_2.0/examples/csaf/csaf_vex/2022-evd-uc-01-a-001.json&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h3 id="g122-linking-to-a-csaf-advisory">G.1.2.2 Linking to a CSAF Advisory</h3>
+<p>To reference a CSAF Advisory document, include the document locator as an external reference of type <code>securityAdvisory</code> on a Package Element.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:pkg-rh-open-shift&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Red Hat OpenShift Enterprise&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.6&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityOther&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/oasis-tcs/csaf/blob/master/csaf_2.0/examples/csaf/rhsa-2019_1862.json&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g13-linking-to-cyclonedx-security-data">G.1.3 Linking to CycloneDX Security Data</h2>
+<p>To reference to <a href="https://cyclonedx.org">CycloneDX</a> formatted security information applicable to a package you need to first create a Package Element.</p>
+<p>Using an External Reference, link the package to the matching component in the CycloneDX BOM. Link to it using its <a href="https://cyclonedx.org/capabilities/bomlink/">BOM link</a>, a URN formed by combining the CycloneDX serial number, version and bom-ref which contains the security information about the package.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:pkg-stack-cors&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stack-cors&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.3.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityOther&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://cyclonedx.org/capabilities/bomlink/17cfc349-c637-4685-856c-81196420c7f5/2#componentRef&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g14-linking-to-an-osv">G.1.4 Linking to an OSV</h2>
+<p>To include a reference to <a href="https://github.com/google/osv">Open Source Vulnerability</a> (OSV) formatted security information applicable to a package you need to first create a Package Element. Then use an External Reference to link to the OSV advisory.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:pkg-Django&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Django&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityAdvisory&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/github/advisory-database/blob/6b9d5bc96a62bb845ee71e4551a214eb1457e2c6/advisories/github-reviewed/2022/04/GHSA-2gwj-7jmv-h26r/GHSA-2gwj-7jmv-h26r.json&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g15-linking-to-an-omnibor-formerly-known-as-gitbom">G.1.5 Linking to an OmniBOR (formerly known as GitBOM)</h2>
+<p>To identify a Package with an <a href="https://omnibor.io/">OmniBOR</a> (Universal Bill Of Receipts, formerly known as GitBOM) gitoid, use an External Identifier to add gitoid to the package.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:pkg-example&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.2.3&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalIdentifier&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalIdentifierType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gitoid&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gitoid:blob:sha1:bcb99b819dadaebdf2c8f88d92ee9024c45f9df3&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g16-linking-to-a-vulnerability-disclosure-document">G.1.6 Linking to a vulnerability disclosure document</h2>
+<p>To express a reference to a vulnerability disclosure document for a package, use an External Reference for a Package Element. The example below shows Cisco’s response to Apache log4j vulnerability.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:pkg-apache-log4j&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;log4j&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.14.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityAdvisory&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<p>To communicate that a package is not vulnerable to a specific vulnerability it is recommended to reference a web page indicating why given vulnerabilities are not applicable using an External Reference on the package.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:example-1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityAdvisory&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://example.com/product-x/security-info-not-affected.html&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<p>To refer to a security disclosure feed, such as the security bulletins from <a href="https://cert.europa.eu">CERT-EU</a>, include an External Reference in the package Element.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:example-2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityAdvisory&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://cert.europa.eu/cert/Data/newsletter/reviewlatest-SecurityBulletins.xml&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g17-linking-to-a-code-fix-for-a-security-issue">G.1.7 Linking to a Code Fix for a Security Issue</h2>
+<p>You can include a reference to a code fix for a security issue applicable to a Package or Vulnerability Element.</p>
+<p>Using the Vulnerability Element from example 1.1 above or a Package Element, you would add a code fix External Reference to the Element as follows. In this example, the link points to a specific code revision containing the fix for <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-28498">CVE-2020-28498</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:example-2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityFix&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/indutny/elliptic/commit/441b7428b0e8f6636c42118ad2aaa186d3c34c3f&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;elliptic before version 6.5.4 are vulnerable to Cryptographic Issues via the secp256k1 implementation in elliptic/ec/key.js. This patch fixes CVE-2020-28498.&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<p>A fix reference may point to a configuration change for example the patch file as one of the fixes for <a href="https://nvd.nist.gov/vuln/detail/CVE-2022-26499">CVE-2022-26499</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:example-2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityFix&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://downloads.digium.com/pub/security/AST-2022-002-16.diff&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<p>Alternatively, it may also link to a landing page with patches for a variety of products such as Oracle patch information for <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:example-2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityFix&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://www.oracle.com/security-alerts/cpujan2022.html&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g18-linking-to-any-security-related-document">G.1.8 Linking to any Security Related Document</h2>
+<p>If you want to reference any security information related to a package but cannot or do not wish to specify its kind, use the <code>securityOther</code> externalRefType.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:pkg-elliptic&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;elliptic&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6.5.4&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityOther&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/christianlundkvist/blog/blob/aa3a69b5e4c06e4435070610c0c4a2b1e8731783/2020_05_26_secp256k1_twist_attacks/secp256k1_twist_attacks.md&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Blog post from author who wrote fix for CVE-2020-28498.&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<p>One can also use it to refer to guidance related to a vulnerability such as CISA guidance for Apache Log4j.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:pkg-apache-log4j&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;log4j&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.14.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securityOther&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://www.cisa.gov/uscert/apache-log4j-vulnerability-guidance&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+<h2 id="g19-linking-to-a-vulnerability-disclosure-report-vdr">G.1.9 Linking to a Vulnerability Disclosure Report (VDR)</h2>
+<p>The National Institute of Standards and Technology (NIST) describes the concept of correlating vulnerability and SBOM information for a software product at the component level in “<a href="https://www.nist.gov/itl/executive-order-14028-improving-nations-cybersecurity/software-security-supply-chains-software-1">Software Security in Supply Chains: Software Bill of Materials (SBOM)</a>”. Use the External Reference <code>vulnerabilityDisclosureReport</code> type to report on vulnerabilities related to the components contained in a software product’s SBOM.</p>
+<p>This enables a software producer to articulate to software consumers the status of vulnerabilities contained in the software product, by means of reporting vulnerability information at either the SBOM document or component level.</p>
+<p>Providing a link to such data at the time the SBOM is published provides a pointer for where to find this relevant vulnerability information without promulgating vulnerability information inside the SBOM. This is advantageous because the vulnerability information has a short shelf-life (it will change frequently) while the SBOM component data isn’t likely to change if the software has not changed.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:spdx.dev:sag-pm&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationInfo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAG-PM (TM)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.1.8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;externalRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalRef&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;externalRefType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vulnerabilityDisclosureReport&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;locator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;https://github.com/rjb4standards/REA-Products/blob/master/SBOM_and_VDRbaseline/sag-pm-118_VDR.json&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">},</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Using SPDX Copyright © 2024, The Linux Foundation and its Contributors.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit"], "search": "../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

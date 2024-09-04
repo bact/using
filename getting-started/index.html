@@ -1,0 +1,1220 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Information on how to use the System Package Data Exchange specification">
+      
+      
+        <meta name="author" content="The Linux Foundation and its Contributors.">
+      
+      
+        <link rel="canonical" href="https://spdx.github.io/using/getting-started/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../cross-ref/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Getting started - Using SPDX</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-writing-spdx-3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Using SPDX" class="md-header__button md-logo" aria-label="Using SPDX" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Using SPDX
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting started
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/spdx/using/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Using SPDX" class="md-nav__button md-logo" aria-label="Using SPDX" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Using SPDX
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/spdx/using/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aka-my-first-spdx-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      (a.k.a My First SPDX File)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-preamble" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Preamble
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tell-us-about-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tell us about yourself
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-did-all-this-stuff-come-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where did all this stuff come from?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describing-the-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing the Document
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Complete Document!
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-add-some-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lets Add Some Software!
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-in-our-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Whats in our Package?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linking-things-together-with-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linking things together with Relationships
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapping-it-all-up-in-a-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrapping it all up in a BOM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closing-it-all-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closing it all up
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cross-ref/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross referencing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../including-security-info-in-spdx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Including security information in a SPDX document
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-spdx-short-id-in-source-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using SPDX license list short identifiers in source files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-spdx-to-comply-with-norms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using SPDX license list short identifiers in source files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diffs-from-previous-editions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differences from previous editions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aka-my-first-spdx-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      (a.k.a My First SPDX File)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-preamble" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Preamble
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tell-us-about-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tell us about yourself
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-did-all-this-stuff-come-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where did all this stuff come from?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describing-the-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing the Document
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-complete-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Complete Document!
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-add-some-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lets Add Some Software!
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-in-our-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Whats in our Package?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linking-things-together-with-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linking things together with Relationships
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapping-it-all-up-in-a-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrapping it all up in a BOM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closing-it-all-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closing it all up
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/spdx/using/edit/main/using/getting-started.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="getting-started-writing-spdx-3">Getting started writing SPDX 3</h1>
+<h2 id="aka-my-first-spdx-file">(a.k.a My First SPDX File)</h2>
+<p>This guide is designed to walk you through the concepts behind an SPDX
+document, by walking through writing one by hand. While it is possible to write
+all your SPDX documents by hand, we would recommend looking at the various
+language bindings that are available for crafting more complex documents.
+Nevertheless, walking through an example of a hand written document can be
+instructive into how SPDX documents work to better understand concepts that are
+at play, even when using language bindings.</p>
+<p>All of the provided fragments listed here are intended to be used to construct
+a complete a valid SPDX JSON document when concatenated together</p>
+<p>If you do would like to construct the complete example from this Markdown file,
+use the following command:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>getting-started.md<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;BEGIN{flag=0} /^```json/, $0==&quot;```&quot; { if (/^---$/){flag++} else if ($0 !~ /^```.*/ ) print $0 &gt; &quot;doc-&quot; flag &quot;.spdx.json&quot;}&#39;</span>
+</code></pre></div>
+<p>Please note that all descriptions of properties, classes, etc. are
+non-normative; that is they are intended to help you understand what is going
+on in simpler language, but are not necessarily complete. Links to the full
+official documentation are provided where possible.</p>
+<h2 id="the-preamble">The Preamble</h2>
+<p>All documents need to start somewhere, and SPDX documents are no exception.</p>
+<p>The root of all SPDX documents will be a JSON object, so start with that:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+</code></pre></div>
+<p>Next, we need to identify that the document is an SPDX 3 JSON-LD document, which is done with:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/rdf/3.0.0/spdx-context.jsonld&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>SPDX documents are designed to be a strict subset of <a href="https://json-ld.org/">JSON-LD</a>, such that
+they can be parsed using either a full JSON-LD parser if you need the full
+power of <a href="https://en.wikipedia.org/wiki/Linked_data">linked documents</a> or <a href="https://www.w3.org/RDF/">RDF</a>, or a much simpler JSON parser if
+all you care about is extracting meaningful SPDX data from the document.</p>
+<p>Because the document is valid JSON-LD, the <code>@context</code> must be provided to tell
+the JSON-LD parser how to expand the human readable names in the document into
+full IRIs (don't worry if you don't know what that means, it's not really that
+important). You can think of this line as telling us "This is an SPDX document,
+and this provided URL tells us how to decode it". The <a href="https://spdx.org/schema/3.0.0/spdx-json-schema.json">SPDX JSON
+Schema</a> will force you to put the correct value here when
+validating a document.</p>
+<p>Now, we need to specify the list of objects that we want to create in this
+document. JSON-LD has a special way of specifying this list using the <code>@graph</code>
+property of the root object like so:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&quot;@graph&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</code></pre></div>
+<h2 id="tell-us-about-yourself">Tell us about yourself</h2>
+<p>Our first SPDX object is going to be a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a> that tells us who
+is writing this document (you!), so lets get started with it:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>This is the basic format for any object in SPDX; all objects have one required
+property named <code>type</code> that tells us what this object actually is, so here we
+say this is a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a>.</p>
+<p>Next, we need to name our object:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://spdx.org/spdxdocs/Person/JoshuaWatt-141ec767-40f2-4aad-9658-ac2703f3a7d9&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Most objects can have some sort of "ID" property that gives it a name. In the
+case of <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a>, that property is called <code>spdxId</code> (inherited
+from <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>). This property is the URI that should give this
+object a universally unique name. Although this property <em>looks</em> like a HTTP
+URL, it is in fact not. Technically speaking, a URL defined a <em>Location</em>, where
+as a URI defines an <em>Identifier</em> (i.e. the name by which something is known).
+In all likelihood, a URI is not a resolvable location from whence you can do an
+HTTP <code>GET</code> to retrieve data, but rather just a way of constructing a namespaced
+identifier. This identifier can be used within this document to refer to this
+object (more on that later), or it can be referenced from other documents to
+refer to this <em>specific</em> object (although in that case there needs to be
+additional information to describe how to find this document). URI's are
+considered to be universally unique, so any objects constructed with this URI
+are considered to be the same object, and any references to this URI is a
+reference to this <em>specific</em> object we are creating.</p>
+<p>If you work for a company, own a domain, etc. it is encouraged to use that (or
+some subdomain of it) in place of <code>spdx.org/spdxdocs</code>.</p>
+<p>In practice, many <code>spdxId</code> values will have some sort of hash or random
+UUID-like string incorporated to make them unique.</p>
+<p>Moving on from this, we have:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>All SPDX objects derived from <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> <em>must</em> specify how they
+were created by <em>linking</em> to a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> object. It is
+important to know the providence of where objects come from; but more on this
+later.</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Joshua Watt&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>The optional <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/name">name</a> property is inherited from the <code>Element</code>
+class, and means "the common name for the thing", or in this case, your name.</p>
+<p>As our last step, we want to indicate another way by which You are known to the
+world; specifically your E-mail address.</p>
+<p>To do this we first need to use the (optional)
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/externalIdentifier">externalIdentifier</a> property which
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a> inherits from <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;externalIdentifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</code></pre></div>
+<p>This property is an array of <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/ExternalIdentifier">ExternalIdentifier</a>
+objects, so start by adding one to the array:</p>
+<div class="highlight"><pre><span></span><code><span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ExternalIdentifier&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Again notice this uses the <code>type</code> property to identify what the object is.
+However it should be noted that this is our first object that is not derived
+from <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>, and therefore it does not need a <code>spdxId</code>
+property.</p>
+<p>Next, lets add the relevant information about your email address:</p>
+<div class="highlight"><pre><span></span><code><span class="w">                    </span><span class="nt">&quot;externalIdentifierType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JPEWhacker@gmail.com&quot;</span>
+</code></pre></div>
+<p>Two properties are used here. First,
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/externalIdentifierType">externalIdentifierType</a> is used to indicate
+what type of external identifier this is. There are many choices, but in the
+case we are specifying your email address, so we choose the value <code>email</code>. The
+second property is the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/identifier">indentifier</a> property which is the
+actual string identifier (in this case, your email address).</p>
+<p>We are now done with our <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a>, so close it all out and
+prepare for the next object:</p>
+<div class="highlight"><pre><span></span><code><span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+</code></pre></div>
+<h2 id="where-did-all-this-stuff-come-from">Where did all this stuff come from?</h2>
+<p>Our next object is going to be a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> object. It
+is required to provide one for every SPDX document, as all objects derived from
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> must link to one in their
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/creationInfo">creationInfo</a> property to indicate where they came
+from.</p>
+<p>Note that the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> describes where a SPDX
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> itself came from (that is, who wrote the actual JSON).
+This is a distinct concept from describing where the thing an
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> <em>describes</em> comes from, which is covered later.</p>
+<p>Lets get started:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CreationInfo&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Hopefully this is making sense. We are saying this object is a
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;@id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>This object also has an <code>@id</code> similar to the <code>spdxId</code> of our person, but it is
+subtly different First of all, this one is <em>not</em> a URI like our
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a>, but instead starts with a <code>_:</code>. This type of identifier
+is known as a <em>blank node</em>. Blank nodes serve a similar purpose to the URI of
+the <code>spdxId</code>, however they <em>only</em> have scope within this SPDX document. What
+this means is that it be impossible to reference this
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> by name outside of this document. Inside the
+document, you can use this identifier to refer to this object. The string after
+the <code>_:</code> is arbitrary and you may choose whatever unique (within the document)
+string that you choose.</p>
+<p>It should be noted that <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> does <em>not</em> derive
+from <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> class (like our previous example of
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/ExternalIdentifier">ExternalIdentifier</a>), and as such the <code>@id</code> property
+is technically optional. However, since we will need to refer to this object at
+other places in the document, we must give it an identifier. This also means
+that this object does not have a mandatory
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/creationInfo">creationInfo</a> property (which makes sense since it
+would be a circular reference). Finally, <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> is
+<em>only</em> allowed to have a blank node identifier.</p>
+<p>If you look back at the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a> we just created, you'll notice
+that its <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/creationInfo">creationInfo</a> property has the string value
+that matches the <code>@id</code> of this object; this is how objects are linked together
+by reference in SPDX.</p>
+<p>Next, we need to specify which version of the SPDX spec that elements linking
+to this <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> are conforming to:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;specVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Now, we need to use the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/createdBy">createdBy</a> property to indicated
+who (or what) created the elements that are linked to this
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;createdBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;http://spdx.org/spdxdocs/Person/JoshuaWatt-141ec767-40f2-4aad-9658-ac2703f3a7d9&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>This property is a list of reference to any class that derives from
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Agent">Agent</a>. Since you are the person writing the document, put a
+single list item that is the <code>spdxId</code> of your <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a> element
+here to link them together. Note that even though this is using a full URI
+instead of a blank node, this is linking in the same way as
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/creationInfo">creationInfo</a> described above.</p>
+<p>Also, it is worth noting that this does indeed create a circular reference
+between our <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a>.<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/creationInfo">creationInfo</a>
+property and <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>.<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/createdBy">createdBy</a>
+property. This is fine in SPDX, as objects are not required to be a Directed
+Acyclical Graph (DAG).</p>
+<p>Finally, we need to specify the date that any objects linking to this
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> were created using the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/created">created</a> property and close out the object:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-03-06T00:00:00Z&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+</code></pre></div>
+<p>Use today's date and time in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> with the format:
+<code>"%Y-%m-%dT%H:%M:%SZ"</code>. The timezone should always be UTC.</p>
+<h2 id="describing-the-document">Describing the Document</h2>
+<p>SPDX requires that information about the document itself be provided. In order
+to do this, we must create a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a> object, so lets
+do that now:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SpdxDocument&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/spdxdocs/Document1-d078aed9-384d-4a64-87cb-99c79647c8c9&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p><a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a> derives from <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>, so it
+has 3 required properties, <code>type</code>, <code>spdxId</code> and
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/creationInfo">creationInfo</a>. We've seen all of these properties
+before in <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a>, so hopefully this getting more familiar. Note
+that we again link back out our previous <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>
+object.</p>
+<p>Next, we need to indicate which <a href="https://spdx.github.io/spdx-spec/v3.0/">Profiles</a> our document uses
+using the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/profileConformance">profileConformance</a> property. This can
+be used by consumers of the document to quickly determine if the information
+they want is in the document (for example, if a user wants to find CVE data,
+but the <code>security</code> profile is not present, there is no reason to continue
+looking in this document).</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;profileConformance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;core&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;software&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>In this case, we are saying this document conforms to the <code>core</code> profile (all
+SPDX documents should include this), and the <code>software</code> profile, since we will
+be describing some software later.</p>
+<p>The final property we need to define is <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/rootElement">rootElement</a>.
+This property is a list of <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> (or any subclass of
+Element) references. Add this now and close our our
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;rootElement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;https://spdx.org/spdxdocs/BOM-e2e955f5-c50e-4a3a-8c69-db152f0f4615&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+</code></pre></div>
+<p>The purpose of this property is to indicate the "interesting" element(s) in the
+document. Since a document can contain a large number of elements, it might be
+difficult for a consumer of the document to know what the focus of the document
+is. This property clarifies that by suggesting which element(s) a user should
+look at to start navigating. While it is possible to have more than one root
+element, it is rare to need more than one.</p>
+<p>Careful readers of the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a> documentation will
+note that we have omitted the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/element">element</a> (derived from the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/ElementCollection">ElementCollection</a> parent class). Technically
+speaking, the property <em>should</em> link to all the elements that are in the
+document using this property. However because this would be error prone, it is
+implied that all <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> objects present in the <code>@graph</code> (that
+is, all the objects we are writing) are implicitly added to the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/element">element</a> property.</p>
+<h2 id="a-complete-document">A Complete Document!</h2>
+<p>At this point, we have a completed SPDX document (albeit, one that has an
+unresolved references in
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a>.<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/rootElement">rootElement</a>). This
+is a fully valid document because it has the SPDX 3.0 preamble, and the
+required <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a> object, which in turn requires a
+valid <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>, which we've provided. Finally, the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a> requires an <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Agent">Agent</a> to describe
+who or what created the Elements in the document, which we've provided by
+writing a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a> object which describes you.</p>
+<p>While this is the minimal example, it may feel long. However, as we continue in
+the document it should become more apparent how reuse of these 3 objects
+(particularly the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>) helps <em>reduce</em> total
+document size while still conveying precise information. In addition, there are
+other options to make a more compact document that are not covered yet, such as
+referring to a external <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Agent">Agent</a> instead of encoding it in the
+document.</p>
+<h2 id="lets-add-some-software">Lets Add Some Software!</h2>
+<p>Now that we have the basic valid document, its time to start adding some
+interesting data to it. Lets start with a fictitious software package called
+<code>amazing-widget</code> which we distribute as a tarball for users to download and run.</p>
+<p>To start with, we need to define a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Package">software_Package</a>
+object the defines how our software is distributed. In this case, the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Package">software_Package</a> will be describing a tarball which
+someone can download, but it can be almost any unit of content that can be used
+to distribute software (either as binaries or source). See the documentation
+for more details.</p>
+<p>Lets define our package:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Package&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/spdxdocs/Package-d1db6e61-aebe-4b13-ae73-d0f66018dbe0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>This should be familiar by now. Note the reuse of our previous
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>.</p>
+<p>Also note that this is our first element that is outside of the <code>Core</code> profile
+in SPDX. In this specific case, the class is defined in the <code>Software</code> profile,
+and as such is prefixed with <code>software_</code>. Any classes and properties that are
+defined in a profile other than <code>Core</code> will be prefixed with the lower case
+profile name + <code>_</code> to disambiguate them from classes and properties with the
+same name in other profiles.</p>
+<p>Again, we can use <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>.<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/name">name</a> to give the
+common name for our package:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;amazing-widget&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Importantly, even though this is a class defined in the <code>Software</code> profile,
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/name">name</a> is defined in core so it <em>does not</em> get prefixed. When
+writing objects, pay attention to which profile the <em>property</em> is defined in,
+as that sets the prefix (the documentation should make it clear what the
+serialized name of a property is if you are unsure <em>TODO: It does not yet</em>).</p>
+<p>Next, we will define what version the <code>amazing-widget</code> package is using
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/packageVersion">software_packageVersion</a>, and where the user
+could download this package from using
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/downloadLocation">software_downloadLocation</a> (both are
+optional):</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;software_packageVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;software_downloadLocation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dl.example.com/amazing-widget_1.0.0.tar&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>These are our first two examples of properties not defined in the <code>Core</code>
+profile, and as such they get the <code>software_</code> prefix.</p>
+<p>Now, we should define when this software was packaged using the (optional)
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/builtTime">builtTime</a> property, so that downstream users can tell how
+old it is:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;builtTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-03-06T00:00:00Z&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Note that we are back in the <code>Core</code> profile properties here (specifically,
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/builtTime">builtTime</a> is a property of <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Artifact">Artifact</a> in
+<code>Core</code>)</p>
+<p>Next, we want to indicate who actually made the package we are describing. This
+is done using the (optional) <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/originatedBy">originatedBy</a> array
+property:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;originatedBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;http://spdx.org/spdxdocs/Person/JoshuaWatt-141ec767-40f2-4aad-9658-ac2703f3a7d9&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>In this example, you can put a single element that references your
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Person">Person</a> <code>spdxId</code> here to indicate that <em>you</em> actually made the
+package. Note that while we are using the same <code>spdxId</code> as we used in the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/CreationInfo">CreationInfo</a>, this is not required.
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/originatedBy">originatedBy</a> is the property that we used to describe
+who made the actual package being described by the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Package">software_Package</a> and not the JSON object itself.</p>
+<p>Finally, we would like to inform consumers of our SPDX how they can validate
+the package to ensure its contents have not changed, or to check if a file that
+they have is the same one being described by this document. This is done using
+the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/verifiedUsing">verifiedUsing</a> property, which is an array of
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/IntegrityMethod">IntegrityMethod</a> objects (or subclasses).</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;verifiedUsing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hash&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;hashValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f3f60ce8615d1cfb3f6d7d149699ab53170ce0b8f24f841fb616faa50151082d&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+</code></pre></div>
+<p>Specifically, we are using the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Hash">Hash</a> subclass of integrity method to
+indicate that the SHA-256 checksum of the package file is
+<code>f3f60ce8615d1cfb3f6d7d149699ab53170ce0b8f24f841fb616faa50151082d</code></p>
+<h2 id="whats-in-our-package">Whats in our Package?</h2>
+<p>Describing that we have a distributed package is a great start, but we are able
+to go further (although this is not mandatory!). Our next object is going to
+describe all the files contained in our
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Package">software_Package</a> by using
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/File">software_File</a>.</p>
+<p>Lets get started with our first file, the program executable:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_File&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/spdxdocs/File-8f79956e-4089-4166-9a71-457de77e4846&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/amazing-widget&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;verifiedUsing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hash&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;hashValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ee4f96ed470ea288be281407dacb380fd355886dbd52c8c684dfec3a90e78f45&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;builtTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-03-05T00:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;originatedBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;http://spdx.org/spdxdocs/Person/JoshuaWatt-141ec767-40f2-4aad-9658-ac2703f3a7d9&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>We've seen all this before, so hopefully it all makes sense.</p>
+<p>While it's great to have a file, it's not easy to tell what purpose this file
+serves. We might be able to infer that its an executable program from the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/name">name</a>, but SPDX provides the ability for us to directly specify
+this using the (optional)
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/primaryPurpose">software_primaryPurpose</a> and
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/additionalPurpose">software_additionalPurpose</a> properties
+(derived from <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Artifact">sofware_Artifact</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;software_primaryPurpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;executable&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;software_additionalPurpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;application&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>A <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Artifact">software_Artifact</a> can have as many purposes a you
+want to describe, but there should always be a
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/primaryPurpose">software_primaryPurpose</a> property defined
+before any <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/additionalPurpose">software_additionalPurpose</a>
+are added.</p>
+<p>Finally, as one last bit of information, we'll say what the copyright text of
+the program is using the (optional)
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/copyrightText">software_copyrightText</a> property and close
+out our file:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;software_copyrightText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Copyright 2024, Joshua Watt&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+</code></pre></div>
+<p>Lets add one more file for fun. This one will describe a config file for our
+program:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_File&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/spdxdocs/File-77808a5c-7a1b-43d1-9fa9-410a309ca9f3&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/etc/amazing-widget.cfg&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;verifiedUsing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hash&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;algorithm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;hashValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;89a2e80bc48c4dd10044c441af0fc6fdad5d31b2fa391cb2cf9c51dbf4200ed9&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;builtTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-03-05T00:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;originatedBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;http://spdx.org/spdxdocs/Person/JoshuaWatt-141ec767-40f2-4aad-9658-ac2703f3a7d9&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;software_primaryPurpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;configuration&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+</code></pre></div>
+<h2 id="linking-things-together-with-relationships">Linking things together with Relationships</h2>
+<p>Now we've described our <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Package">software_Package</a>, and two
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/File">software_File</a>s that should be contained in it, but we
+have one small problem: there is nothing that tells us that our files are
+actually contained by the package.</p>
+<p>In order to do this, we must introduce the SPDX
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Relationship">Relationship</a>. These are a very powerful concept in SPDX
+that allows linking <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>s and describing how they are
+related.</p>
+<p><a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Relationship">Relationship</a>s themselves are also derived from SPDX
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>s, so we need the required three properties to start a
+new one:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Relationship&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/spdxdocs/Relationship/contains-6b0b7ce4-a069-406d-9088-9e91f65b79f0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Next, we need to say what the relationship between our objects is going to be.
+We do this using the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/relationshipType">relationshipType</a> property:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;relationshipType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;contains&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>The full list of what a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Relationship">Relationship</a> can describe is
+defined by the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Vocabularies/RelationshipType">RelationshipType</a> vocabulary (a fancy
+work for enumeration). There are a lot of possible options, and each one has a
+specific meaning and restrictions on what types it can relate, so read the
+documentation to find the specific one you need and how to use it. In our case,
+we are using <code>contains</code> which is defined as "The <code>from</code>
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a> contains each <code>to</code> <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>". Perfect.</p>
+<p>Now, we need to describe what <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element">Element</a>s are being connected.
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Relationship">Relationship</a>s always have a directionality associated
+with them: you can think of them as an arrow pointing from their
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/from">from</a> property to their <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/to">to</a> properties.
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/from">from</a> is always required and must be a single object, whereas
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/to">to</a> is a list of zero or more objects. Lets write the JSON to
+express this:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/spdxdocs/Package-d1db6e61-aebe-4b13-ae73-d0f66018dbe0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;https://spdx.org/spdxdocs/File-8f79956e-4089-4166-9a71-457de77e4846&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;https://spdx.org/spdxdocs/File-77808a5c-7a1b-43d1-9fa9-410a309ca9f3&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>This is the minimum required to define a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Relationship">Relationship</a>,
+but we want to add one more property to convey additional information and close
+out the object:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;completeness&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;complete&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+</code></pre></div>
+<p>The <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/completeness">completeness</a> property is very useful as it
+indicates if we know that this <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Relationship">Relationship</a> can be
+considered to describe all we know about the type of relationship or not. For
+example, by stating that this relationship is <code>complete</code>, we are saying that
+our package contains those 2 files, and <em>only</em> those 2 files. We could have
+also stated that the relationship was <code>incomplete</code> in which case we are stating
+that we know we didn't list all the files, and other are included.
+Alternatively, we could have stated that the relationship
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/completeness">completeness</a> was <code>noAssertion</code> meaning we don't know
+if we captured all the files or not. If this property is omitted, it's assumed
+to be <code>noAssertion</code>.</p>
+<h2 id="wrapping-it-all-up-in-a-bom">Wrapping it all up in a BOM</h2>
+<p>We've made great progress, and we are <em>almost</em> done. For our final step, we
+want to wrap up everything we know about the package into a "Software Bill of
+Materials".</p>
+<p>This is done by creating a <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Sbom">software_Sbom</a> object:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;software_Sbom&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spdxId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://spdx.org/spdxdocs/BOM-e2e955f5-c50e-4a3a-8c69-db152f0f4615&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;creationInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_:creationinfo&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p>Note that this is the object referenced by the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/rootElement">rootElement</a> of
+our <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a>, since it is the primary subject of our entire
+document.</p>
+<p><a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Sbom">software_Sbom</a> derives from
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/ElementCollection">ElementCollection</a> just like
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a>, so it has the same
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/rootElement">rootElement</a> property. In this case, it is the subject
+of the SBOM, which is our <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/Package">software_Package</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;rootElement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;https://spdx.org/spdxdocs/Package-d1db6e61-aebe-4b13-ae73-d0f66018dbe0&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>Unlike <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/SpdxDocument">SpdxDocument</a> however, there is no implicit value
+for the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Core/Properties/element">element</a> property. Instead, we need to list all the
+elements that are part of this SBOM (think of this as the line items in the
+SBOM). In our specific case, this is the <a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Classes/File">software_File</a>s
+that part of our package, but if you had any other elements related to the
+package (e.g. licenses, security information, etc.) those would also be
+included:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;element&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;https://spdx.org/spdxdocs/File-8f79956e-4089-4166-9a71-457de77e4846&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;https://spdx.org/spdxdocs/File-77808a5c-7a1b-43d1-9fa9-410a309ca9f3&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+</code></pre></div>
+<p>Finally, we need to specify what type(s) of BOM this is using the
+<a href="https://spdx.github.io/spdx-spec/v3.0/model/Software/Properties/sbomType">software_sbomType</a> property:</p>
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="nt">&quot;software_sbomType&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;build&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+<p>This property is effectively indicating at what point in the software lifecycle
+this SBOM was generated. Since we are describing an executable program, <code>build</code>
+seems the most likely.</p>
+<h2 id="closing-it-all-up">Closing it all up</h2>
+<p>Now that we are all done, we have a few things to clean up, namely that we need
+to close the <code>@graph</code> list and the root object, so lets do that now:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Congratulations!</strong> You just wrote your first SPDX document! Hopefully this
+walk through has been instructive and you are ready to get started with SPDX!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Using SPDX Copyright © 2024, The Linux Foundation and its Contributors.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit"], "search": "../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
