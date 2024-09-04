@@ -40,19 +40,19 @@ validation:
     absolute_links: warn
     unrecognized_links: warn
 nav:
-- "Home": index.md
-- "Getting started": getting-started.md
-- "Cross referencing": cross-ref.md
-- "Including security information in a SPDX document": including-security-info-in-spdx.md
-- "Using SPDX License List short identifiers in source files": using-spdx-short-id-in-source-files.md
-- "Using SPDX to comply with norms, standards and regulation": using-spdx-to-comply-with-norms.md
-- "Differences between editions": diff/index.md
-  - "3.0.1 and 3.0": diff/v3.0.1-v3.0.md
-  - "3.0 and 2.3": diff/v3.0-v2.3.md
-  - "2.3 and 2.2.2": diff/v2.3-v2.2.2.md
-  - "2.2.2 and 2.2.1": diff/v2.2.2-v2.2.1.md
-  - "2.2.1 and 2.2": diff/v2.2.1-v2.2.md
-  - "2.2 and 2.1": diff/v2.2-v2.1.md
-  - "2.1 and 2.0": diff/v2.1-v2.0.md
-  - "2.0 and 1.2": diff/v2.0-v1.2.md
-- "Browse by tags": tags.md
+- Home: index.md
+- Getting started: getting-started.md
+- Cross referencing: cross-ref.md
+- Including security information in a SPDX document: including-security-info-in-spdx.md
+- Using SPDX License List short identifiers in source files: using-spdx-short-id-in-source-files.md
+- Using SPDX to comply with norms, standards and regulation: using-spdx-to-comply-with-norms.md
+- Differences between editions:
+  - 3.0.1 and 3.0: diff/v3.0.1-v3.0.md
+  - 3.0 and 2.3: diff/v3.0-v2.3.md
+  - 2.3 and 2.2.2: diff/v2.3-v2.2.2.md
+  - 2.2.2 and 2.2.1: diff/v2.2.2-v2.2.1.md
+  - 2.2.1 and 2.2: diff/v2.2.1-v2.2.md
+  - 2.2 and 2.1: diff/v2.2-v2.1.md
+  - 2.1 and 2.0: diff/v2.1-v2.0.md
+  - 2.0 and 1.2: diff/v2.0-v1.2.md
+- Browse by tags: tags.md
