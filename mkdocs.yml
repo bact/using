@@ -14,9 +14,7 @@ theme:
     - content.action.edit
 plugins:
 - search
-- social:
-    cards_layout_options:
-      logo: images/logo-color.svg
+- social
 - tags:
     tags_file: tags.md
 markdown_extensions:
@@ -56,3 +54,5 @@ nav:
   - 2.1 and 2.0: diff/v2.1-v2.0.md
   - 2.0 and 1.2: diff/v2.0-v1.2.md
 - Browse by tags: tags.md
+not_in_nav: |
+  diff/index.md
