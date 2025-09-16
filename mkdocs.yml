@@ -40,7 +40,7 @@ validation:
 nav:
 - Home: index.md
 - Getting started: getting-started.md
-- Cross referencing: cross-ref.md
+- Cross referencing: cross-reference.md
 - Including security information in a SPDX document: security-info-in-spdx.md
 - Using SPDX License List short identifiers in source files: license-id-in-source.md
 - Using SPDX to comply with norms, standards and regulation: comply-with-norms.md
