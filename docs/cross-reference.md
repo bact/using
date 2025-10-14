@@ -1,3 +1,10 @@
+---
+SPDX-License-Identifier: Community-Spec-1.0
+tags:
+  - reference
+  - v3.0
+---
+
 # Cross referencing in SPDX 3
 
 This document will walk though how to refer to SPDX Elements across documents
