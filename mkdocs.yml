@@ -1,9 +1,9 @@
 site_name: Using SPDX
 site_description: Information on how to use the System Package Data Exchange (SPDX) specification
-site_author: The Linux Foundation and its Contributors.
-site_url: https://spdx.github.io/using/  # set to the "root" of the site, to be combined with canonical_version
+site_author: The Linux Foundation and its Contributors
+site_url: https://spdx.github.io/using/
 repo_url: https://github.com/spdx/using/
-edit_uri: "edit/main/docs"  # set to an empty string to disable edit links;
+edit_uri: "edit/main/docs"  # set to an empty string to disable edit links
 copyright: Using SPDX Copyright © 2024-2025, The Linux Foundation and its Contributors.
 use_directory_urls: true
 theme:
@@ -12,7 +12,14 @@ theme:
   logo: images/logo-white.svg
   features:
     - content.action.edit
+    - navigation.instant
+    - navigation.instant.progress
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
 plugins:
+- git-revision-date
 - search
 - social
 - tags
@@ -44,3 +51,4 @@ nav:
 - Using SPDX License List short identifiers in source files: license-id-in-source.md
 - Using SPDX to comply with norms, standards and regulation: comply-with-norms.md
 - Differences from previous editions: diffs-from-previous-editions.md
+- Browse by tags: tags.md
