@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Build and deploy MkDocs site
+    name: Build and deploy site
     runs-on: ubuntu-latest
     steps:
       - name: Checkout content
