@@ -19,7 +19,7 @@ theme:
       primary: indigo
       accent: indigo
 plugins:
-- git-revision-date
+- git-revision-date-localized # Use mkdocs-git-revision-date-localized-plugin
 - search
 - social
 - tags
