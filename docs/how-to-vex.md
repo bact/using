@@ -149,33 +149,35 @@ VEX is designed to communicate status of a vulnerability in a software product w
 Because [Elements](https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Element/) in SPDX are immutable, it is best practice to issue a new VulnAssessmentRelationship of type `amendedBy` each time the VEX status of a vulnerability changes (i.e. `underInvestigationFor` --> `affects`) in addition to creating the new type of VEX status relationship. Linking the two VEX relationships this way creates a more complete graph while making it easier for tools to track the changing status of a vulnerability in a software product. The following example shows how you would communicate that a vulnerability was under investigation before determining that the vulnerability indeed affects a product.
 
 ```json
-{
-  "type": "VexUnderInvestigationVulnAssessmentRelationship",
-  "spdxId": "urn:spdx.dev:vex-underInvestigation-1",
-  "relationshipType": "underInvestigationFor",
-  "from": "urn:spdx.dev:vuln-cve-2020-28498",
-  "to": [ "urn:product-acme-application-1.3" ],
-  "security_assessedElement": "urn:npm-elliptic-6.5.2",
-  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
-  "publishedTime": "2021-03-09T11:04:53Z"
-},
-{
-  "type": "VulnAssessmentRelationship",
-  "spdxId": "urn:spdx.dev:vex-update-acme-1.3",
-  "relationshipType": "amendedBy",
-  "from": "urn:spdx.dev:vex-underInvestigation-1",
-  "to": [ "urn:spdx.dev:vex-affected-1" ]
-},
-{
-  "type": "VexAffectedVulnAssessmentRelationship",
-  "spdxId": "urn:spdx.dev:vex-affected-1",
-  "relationshipType": "affects",
-  "from": "urn:spdx.dev:vuln-cve-2020-28498",
-  "to": [ "urn:product-acme-application-1.3" ],
-  "security_assessedElement": "urn:npm-elliptic-6.5.2",
-  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
-  "publishedTime": "2021-03-15T08:10:43Z"
-}
+[
+  {
+    "type": "VexUnderInvestigationVulnAssessmentRelationship",
+    "spdxId": "urn:spdx.dev:vex-underInvestigation-1",
+    "relationshipType": "underInvestigationFor",
+    "from": "urn:spdx.dev:vuln-cve-2020-28498",
+    "to": [ "urn:product-acme-application-1.3" ],
+    "security_assessedElement": "urn:npm-elliptic-6.5.2",
+    "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
+    "publishedTime": "2021-03-09T11:04:53Z"
+  },
+  {
+    "type": "VulnAssessmentRelationship",
+    "spdxId": "urn:spdx.dev:vex-update-acme-1.3",
+    "relationshipType": "amendedBy",
+    "from": "urn:spdx.dev:vex-underInvestigation-1",
+    "to": [ "urn:spdx.dev:vex-affected-1" ]
+  },
+  {
+    "type": "VexAffectedVulnAssessmentRelationship",
+    "spdxId": "urn:spdx.dev:vex-affected-1",
+    "relationshipType": "affects",
+    "from": "urn:spdx.dev:vuln-cve-2020-28498",
+    "to": [ "urn:product-acme-application-1.3" ],
+    "security_assessedElement": "urn:npm-elliptic-6.5.2",
+    "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
+    "publishedTime": "2021-03-15T08:10:43Z"
+  }
+]
 ```
 
 Note that it is not required to include an `amendedBy` relationship for evolving impact statements but it is considered best practice. One could also simply create a new VEX status relationship for tools/consumers to piece together using context clues like product names, ids and time stamps.
