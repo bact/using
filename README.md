@@ -30,6 +30,10 @@ SPDX-License-Identifier: Community-Spec-1.0
   to suggest changes and additions.
 - Website content is in the [docs/](./docs) directory.
   Images and diagrams are in the [docs/images/](./docs/images) directory.
+- [bin/check-examples.sh](./bin/check-examples.sh) script
+  can be used to validate SPDX 3 JSON snippets in the documentation
+  (requires GNU awk; macOS users may need to use `gawk` instead of the default
+  `awk`).
 
 ## Website generation
 
