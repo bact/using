@@ -1,4 +1,7 @@
 ---
+SPDX-FileContributor: Rose Judge
+SPDX-FileContributor: SPDX Contributors
+SPDX-FileType: DOCUMENTATION
 SPDX-License-Identifier: Community-Spec-1.0
 tags:
   - security
@@ -82,9 +85,9 @@ The following example shows how you would communicate that a vulnerability is un
   "spdxId": "urn:spdx.dev:vex-underInvestigation-1",
   "relationshipType": "underInvestigationFor",
   "from": "urn:spdx.dev:vuln-cve-2020-28498",
-  "to": ["urn:product-acme-application-1.3"],
+  "to": [ "urn:product-acme-application-1.3" ],
   "security_assessedElement": "urn:npm-elliptic-6.5.2",
-  "suppliedBy": ["urn:spdx.dev:agent-jane-doe"],
+  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
   "publishedTime": "2021-03-09T11:04:53Z"
 }
 ```
@@ -97,9 +100,9 @@ To communicate that a product is affected by a vulnerability, you would instead 
   "spdxId": "urn:spdx.dev:vex-affected-1",
   "relationshipType": "affects",
   "from": "urn:spdx.dev:vuln-cve-2020-28498",
-  "to": ["urn:product-acme-application-1.3"],
+  "to": [ "urn:product-acme-application-1.3" ],
   "security_assessedElement": "urn:npm-elliptic-6.5.2",
-  "suppliedBy": ["urn:spdx.dev:agent-jane-doe"],
+  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
   "publishedTime": "2021-03-09T11:04:53Z"
 }
 ```
@@ -114,9 +117,9 @@ Product A, affected by CVE-2021-44228:
   "spdxId": "urn:spdx.dev:vex-affected-1",
   "relationshipType": "affects",
   "from": "urn:spdx.dev:vuln-cve-2021-44228",
-  "to": ["urn:product-acme-application-1.3"],
+  "to": [ "urn:product-acme-application-1.3" ],
   "security_assessedElement": "urn:apache-log4j-2.12",
-  "suppliedBy": ["urn:spdx.dev:agent-jane-doe"],
+  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
   "publishedTime": "2021-12-10T11:04:53Z",
   "security_actionStatement": "Recommend to update log4j version to 2.16.0 or later",
   "security_actionStatementTime": "2021-12-12T12:09:23Z"
@@ -131,9 +134,9 @@ Product B, not affected by CVE-2021-44228:
   "spdxId": "urn:spdx.dev:vex-not-affected-1",
   "relationshipType": "doesNotAffect",
   "from": "urn:spdx.dev:vuln-cve-2021-44228",
-  "to": ["urn:product-acme-application-1.4"],
+  "to": [ "urn:product-acme-application-1.4" ],
   "security_assessedElement": "urn:apache-log4j-2.12",
-  "suppliedBy": ["urn:spdx.dev:agent-jane-doe"],
+  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
   "publishedTime": "2021-12-10T11:04:53Z",
   "security_justificationType": "vulnerableCodeNotInExecutePath"
 }
@@ -151,9 +154,9 @@ Because [Elements](https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Elem
   "spdxId": "urn:spdx.dev:vex-underInvestigation-1",
   "relationshipType": "underInvestigationFor",
   "from": "urn:spdx.dev:vuln-cve-2020-28498",
-  "to": ["urn:product-acme-application-1.3"],
+  "to": [ "urn:product-acme-application-1.3" ],
   "security_assessedElement": "urn:npm-elliptic-6.5.2",
-  "suppliedBy": ["urn:spdx.dev:agent-jane-doe"],
+  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
   "publishedTime": "2021-03-09T11:04:53Z"
 },
 {
@@ -161,16 +164,16 @@ Because [Elements](https://spdx.github.io/spdx-spec/v3.0/model/Core/Classes/Elem
   "spdxId": "urn:spdx.dev:vex-update-acme-1.3",
   "relationshipType": "amendedBy",
   "from": "urn:spdx.dev:vex-underInvestigation-1",
-  "to": ["urn:spdx.dev:vex-affected-1"],
+  "to": [ "urn:spdx.dev:vex-affected-1" ]
 },
 {
   "type": "VexAffectedVulnAssessmentRelationship",
   "spdxId": "urn:spdx.dev:vex-affected-1",
   "relationshipType": "affects",
   "from": "urn:spdx.dev:vuln-cve-2020-28498",
-  "to": ["urn:product-acme-application-1.3"],
+  "to": [ "urn:product-acme-application-1.3" ],
   "security_assessedElement": "urn:npm-elliptic-6.5.2",
-  "suppliedBy": ["urn:spdx.dev:agent-jane-doe"],
+  "suppliedBy": [ "urn:spdx.dev:agent-jane-doe" ],
   "publishedTime": "2021-03-15T08:10:43Z"
 }
 ```
