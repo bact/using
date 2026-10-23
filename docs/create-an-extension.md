@@ -91,7 +91,7 @@ tools can check data against it. Use OWL for the classes and properties, and
 SHACL for the constraints, in the same style as the
 [SPDX model](https://spdx.org/rdf/3.0.1/spdx-model.ttl).
 
-```text
+```turtle
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -129,14 +129,19 @@ sd:generatorModel a owl:ObjectProperty ; rdfs:range spdx-ai:AIPackage .
 
 Add `rdfs:comment` descriptions to every class, property and vocabulary entry.
 
+`sh:class spdx-ai:AIPackage` is checked against the types in the data. A
+reference to an AIPackage that is described in another document fails it,
+unless that document is validated together with this one.
+
 If you may later propose the extension to SPDX, also write the definitions in
 the Markdown format of the [SPDX 3 model][spdx-3-model] (one file per class,
 property and vocabulary). That is the format SPDX itself is written in.
 
 ## Step 4: use the extension in a document
 
-In SPDX 3 JSON, `@context` must be exactly the SPDX context URL, and that
-context only defines SPDX terms. So in an extension object:
+The SPDX 3 JSON Schema requires `@context` to be exactly the SPDX context URL
+(the specification text allows extra namespace mappings, but the schema does
+not), and that context only defines SPDX terms. So in an extension object:
 
 - `type` is the **full IRI** of the extension class.
 - Property keys are **full IRIs**.
@@ -145,11 +150,14 @@ context only defines SPDX terms. So in an extension object:
   looks like an IRI.
 - A value with a datatype other than string, boolean or integer is written as
   `{"@value": "<value>", "@type": "<datatype IRI>"}`. For example, write a
-  decimal as `{"@value": "0.35", "@type": "http://www.w3.org/2001/XMLSchema#decimal"}`:
-  a JSON number with a fraction, such as `0.35`, means `xsd:double` in
-  JSON-LD.
+  decimal as `{"@value": "0.35", "@type": "http://www.w3.org/2001/XMLSchema#decimal"}`.
+  JSON-LD types a JSON number by its value: `0.35` becomes `xsd:double`, and
+  `2.0` becomes `xsd:integer`.
+- Write an integer as plain digits, such as `2`, not `2.0` or `2e0`. Some
+  tools, including rdflib (used by pySHACL), read `2.0` as `xsd:double`.
 - The extension object is written inside the `extension` array of the Element
-  it describes. It cannot be a separate entry in `@graph`.
+  it describes. The SPDX 3.0.1 JSON Schema does not accept it as a separate
+  entry in `@graph`.
 
 A complete document, where an AI model generated part of a dataset:
 
@@ -251,8 +259,11 @@ spdx3-validate -s 3.0.1 -j synthetic-data.spdx3.json
 ```
 
 This checks only that the extension fits SPDX (for example, that it is inside
-an `extension` array and has a full-IRI `type`). It does not know your
-extension's rules.
+an `extension` array and its `type` is an IRI, not an SPDX term). It does not
+know your extension's rules.
+
+Use SPDX 3.0.1 or later. The SPDX 3.0.0 SHACL shapes reject every custom
+extension, so a document with one never passes 3.0.0 validation.
 
 **Your extension.** Check the extension data against your SHACL shapes, for
 example with [pySHACL](https://github.com/RDFLib/pySHACL), passing your
@@ -289,7 +300,7 @@ read a document with your extension and write it back, and check that:
 | Do | Do not |
 | --- | --- |
 | Use a namespace you control | Use `https://spdx.org/` or someone else's domain |
-| Use full IRIs for the class and properties | Add your own `@context` to the document |
+| Use full IRIs for the class and properties | Add your own mappings to `@context` |
 | Write IRI values as `{"@id": ...}` | Write IRIs as plain strings |
 | Write decimals and dates as `{"@value": ..., "@type": ...}` | Write decimals as JSON numbers |
 | Put the extension inside the Element's `extension` array | Put it at the top level of `@graph` |
