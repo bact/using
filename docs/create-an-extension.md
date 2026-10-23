@@ -80,8 +80,9 @@ Things to decide for each property:
   extension, also of the same class. Say whether that is allowed for your
   extension, and what it means.
 
-An extension is not an Element: it has no `spdxId` and no `creationInfo`, and
-it belongs to exactly one Element. If the information needs its own identity
+An extension is not an Element: it has no `spdxId` and no `creationInfo`.
+Attach each extension instance to one Element only, and leave it without an
+`@id` (a blank node). If the information needs its own identity
 or provenance, use an Element (for example an Annotation) instead.
 
 ## Step 3: write the definition
@@ -128,7 +129,11 @@ sd:syntheticFraction a owl:DatatypeProperty ; rdfs:range xsd:decimal .
 sd:generatorModel a owl:ObjectProperty ; rdfs:range spdx-ai:AIPackage .
 ```
 
-Add `rdfs:comment` descriptions to every class, property and vocabulary entry.
+Save it as `synthetic-data.ttl`. Add `rdfs:comment` descriptions to every
+class, property and vocabulary entry.
+
+The SPDX IRIs in it (`spdx-ext:`, `spdx-ai:`) are those of SPDX 3.0.1. SPDX
+3.1 uses different IRIs, so a definition for 3.1 data needs its own copy.
 
 `sh:class spdx-ai:AIPackage` is checked against the types in the data. A
 reference to an AIPackage that is described in another document fails it,
@@ -146,21 +151,25 @@ not), and that context only defines SPDX terms. So in an extension object:
 
 - `type` is the **full IRI** of the extension class.
 - Property keys are **full IRIs**.
-- A value that is an IRI (a vocabulary entry, or a reference to an Element) is
-  written as `{"@id": "<IRI>"}`. A plain string is a text value, even if it
-  looks like an IRI.
+- A value that is a resource identified by an IRI (a vocabulary entry, or an
+  Element) is written as `{"@id": "<IRI>"}`. A plain string is a text value,
+  even if it looks like an IRI.
 - A value with a datatype other than string, boolean or integer is written as
   `{"@value": "<value>", "@type": "<datatype IRI>"}`. For example, write a
   decimal as `{"@value": "0.35", "@type": "http://www.w3.org/2001/XMLSchema#decimal"}`.
-  JSON-LD types a JSON number by its value: `0.35` becomes `xsd:double`, and
-  `2.0` becomes `xsd:integer`.
-- Write an integer as plain digits, such as `2`, not `2.0` or `2e0`. Some
-  tools, including rdflib (used by pySHACL), read `2.0` as `xsd:double`.
+  Per the JSON-LD 1.1 API, a JSON number is typed by its value: `0.35`
+  becomes `xsd:double`, and `2.0` becomes `xsd:integer`.
+- Write an integer as plain digits, such as `2`, not `2.0` or `2e0`, and use
+  a value object for integers of 1e21 or more. Some tools, including rdflib
+  (used by pySHACL), read `2.0` as `xsd:double`.
+- A value that is itself an object of one of your classes is written as a
+  nested object, with the same rules.
 - The extension object is written inside the `extension` array of the Element
   it describes. The SPDX 3.0.1 JSON Schema does not accept it as a separate
   entry in `@graph`.
 
-A complete document, where an AI model generated part of a dataset:
+A complete document, where an AI model generated part of a dataset (save it
+as `synthetic-data.spdx3.json`):
 
 ```json
 {
@@ -273,6 +282,9 @@ definition as both the shapes and the ontology:
 ```shell
 pyshacl -s synthetic-data.ttl -e synthetic-data.ttl -df json-ld synthetic-data.spdx3.json
 ```
+
+pySHACL fetches the SPDX JSON-LD context from the network to read the
+document.
 
 Test with documents that break your rules too (a missing required property, a
 value out of range), and check that they are reported.
