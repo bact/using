@@ -101,7 +101,8 @@ SHACL for the constraints, in the same style as the
 @prefix sd: <https://example.org/spdx3-ext/synthetic-data/> .
 @prefix sdgm: <https://example.org/spdx3-ext/synthetic-data/DataGenerationMethodType/> .
 
-sd:SyntheticDataExtension a owl:Class, rdfs:Class, sh:NodeShape ;
+sd:SyntheticDataExtension a owl:Class, sh:NodeShape ;
+    sh:targetClass sd:SyntheticDataExtension ;
     rdfs:subClassOf spdx-ext:Extension ;
     sh:property [
         sh:path sd:generationMethod ;
