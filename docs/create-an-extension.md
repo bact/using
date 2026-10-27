@@ -15,6 +15,21 @@ document, and how to validate it.
 It uses a small example extension, *SyntheticData*, which records how the
 content of a dataset was generated (by humans, by a machine, or both).
 
+!!! note "Tested versions"
+
+    The examples and commands in this guide were tested on 2026-10-27 with
+    SPDX 3.0.1 and the latest released version of each tool:
+
+    | Tool | Version | Result |
+    | --- | --- | --- |
+    | [spdx3-validate](https://github.com/JPEWdev/spdx3-validate) | 0.0.7 | Works |
+    | [pySHACL](https://github.com/RDFLib/pySHACL) (with rdflib 7.6.0) | 0.40.1 | Works |
+    | [spdx-python-model](https://github.com/spdx/spdx-python-model) | 0.0.6 | Reads the document; cannot write it back ([workaround](#spdx-python-model-006)) |
+    | [tools-java](https://github.com/spdx/tools-java) | 2.0.7 | Rejects the document ([details](#tools-java-207)) |
+
+    SPDX 3.1 is not released yet, and spdx3-validate 0.0.7 supports only
+    SPDX 3.0.0 and 3.0.1.
+
 ## Do you need an extension?
 
 An extension adds information to an SPDX Element that the SPDX model has no
@@ -336,7 +351,8 @@ flowchart LR
 ```
 
 **SPDX.** Check the document against the SPDX model with
-[spdx3-validate](https://github.com/JPEWdev/spdx3-validate):
+[spdx3-validate](https://github.com/JPEWdev/spdx3-validate) (tested with
+0.0.7):
 
 ```shell
 spdx3-validate -s 3.0.1 -j synthetic-data.spdx3.json
@@ -344,34 +360,120 @@ spdx3-validate -s 3.0.1 -j synthetic-data.spdx3.json
 
 This checks only that the extension fits SPDX (for example, that it is inside
 an `extension` array and its `type` is an IRI, not an SPDX term). It does not
-know your extension's rules.
+know your extension's rules: a document whose extension data breaks them
+still passes. spdx3-validate 0.0.7 has no option to load extra SHACL shapes,
+so check your rules with a separate tool, as below.
 
 Use SPDX 3.0.1 or later. The SPDX 3.0.0 SHACL shapes reject every custom
 extension, so a document with one never passes 3.0.0 validation.
 
 **Your extension.** Check the extension data against your SHACL shapes, for
-example with [pySHACL](https://github.com/RDFLib/pySHACL), passing your
-definition as both the shapes and the ontology:
+example with [pySHACL](https://github.com/RDFLib/pySHACL) (tested with
+0.40.1), passing your definition as both the shapes and the ontology:
 
 ```shell
 pyshacl -s synthetic-data.ttl -e synthetic-data.ttl -df json-ld synthetic-data.spdx3.json
 ```
 
 pySHACL fetches the SPDX JSON-LD context from the network to read the
-document.
+document, so this step needs network access.
 
 Test with documents that break your rules too (a missing required property, a
-value out of range), and check that they are reported.
+value out of range), and check that they are reported. For example, with
+`syntheticFraction` set to `1.5` and `generationMethod` removed,
+spdx3-validate 0.0.7 still passes, and pySHACL reports both problems.
 
 ### Check that your tools keep the data
 
-Not every SPDX tool supports custom extensions yet. Before you rely on a tool,
-read a document with your extension and write it back, and check that:
+Many SPDX tools do not support custom extensions yet. Before you rely on a
+tool, read a document with your extension and write it back, and check that:
 
 - the tool does not reject the document;
 - the extension object is still there, with the same `type` and keys;
 - `{"@id": ...}` and `{"@value": ..., "@type": ...}` values are unchanged;
 - the output still passes `spdx3-validate` and your SHACL check.
+
+These are the results for the SPDX libraries, with the document from Step 4.
+
+#### spdx-python-model 0.0.6
+
+**Reading works.** The extension object is kept, with its values as they are
+in the JSON, for example
+`{'@id': 'https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/mixed'}`.
+
+**Writing fails** when an extension has a `{"@id": ...}` or
+`{"@value": ..., "@type": ...}` value:
+
+```text
+TypeError: Unsupported serialized type <class 'dict'> with value {'@id': 'https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/mixed'}
+```
+
+*Why:* the library writes a property of an extension only if its value is a
+plain string, number or boolean. It has no way to write a JSON-LD value
+object, and a plain value would lose the type (an IRI would become a text
+value), so your SHACL check would fail.
+
+*Workaround:* take the extension objects out before writing, and put them back
+into the JSON output afterwards:
+
+```python
+import io
+import json
+
+from spdx_python_model import v3_0_1 as spdx
+
+with open("synthetic-data.spdx3.json") as f:
+    source = json.load(f)
+extensions = {
+    obj["spdxId"]: obj["extension"]
+    for obj in source["@graph"]
+    if "extension" in obj
+}
+
+objects = spdx.SHACLObjectSet()
+with open("synthetic-data.spdx3.json") as f:
+    spdx.JSONLDDeserializer().read(f, objects)
+
+# ... work with the objects ...
+
+for obj in objects.foreach():
+    if hasattr(obj, "extension"):
+        del obj.extension[:]
+
+buffer = io.BytesIO()
+spdx.JSONLDSerializer().write(objects, buffer)
+output = json.loads(buffer.getvalue())
+for obj in output["@graph"]:
+    if obj.get("spdxId") in extensions:
+        obj["extension"] = extensions[obj["spdxId"]]
+
+with open("output.spdx3.json", "w") as f:
+    json.dump(output, f, indent=2)
+```
+
+The output passes spdx3-validate and the SHACL check of the extension.
+The extension data is copied from the input as it is, so this only works
+when your code does not change it.
+
+#### tools-java 2.0.7
+
+**Reading fails.** `Verify` and `Convert` stop on any document that has a
+custom extension:
+
+```text
+Analysis exception processing SPDX file: Missing type for core object {"type":"https://example.org/spdx3-ext/synthetic-data/SyntheticDataExtension", ...
+```
+
+The same document without the extension object is valid in tools-java.
+
+*Why:* the SPDX Java library (spdx-v3jsonld-store 1.0.5 in tools-java 2.0.7;
+the latest release, 1.0.6, behaves the same) creates an object only for the
+SPDX classes it knows. It has no object type for an extension class from
+another namespace, so it stops.
+
+*Workaround:* none within tools-java. Validate with spdx3-validate and pySHACL
+as above, and do not use tools-java, or other tools built on the SPDX Java
+library, to read or convert documents with custom extensions.
 
 ## Step 6: share the definition
 
