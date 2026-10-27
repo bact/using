@@ -26,15 +26,35 @@ already exists:
    sure.
 2. **An [Annotation][Class_Annotation]**, for a free-text statement about an
    Element, with its own author and date.
-3. **A [CdxPropertiesExtension][Class_CdxPropertiesExtension]**, for simple
-   name-value pairs, for example to carry CycloneDX `properties`.
+3. **The [additionalInformation][Property_additionalInformation] property**
+   (SPDX 3.1 and later), for simple key-value pairs where both key and value
+   are strings. It is available on software artifacts, hardware, services,
+   actions and processes. Use
+   [additionalInformationSpecification][Property_additionalInformationSpecification]
+   to point to the Specification that defines what the keys and values mean.
 4. **A custom extension**, when you need structured data with its own types:
    values from a fixed list, numbers, dates, or references to other Elements.
    That is what this guide covers.
 
-If the information would be useful to others, consider proposing it for a
-future SPDX version as well. A working extension is a good basis for such a
-proposal.
+[CdxPropertiesExtension][Class_CdxPropertiesExtension] is not a general-purpose
+option. It exists to carry CycloneDX `properties` (name-value pairs) into
+SPDX, for example when converting a CycloneDX document. Use it only for that.
+
+```mermaid
+flowchart TD
+    q1(Does an SPDX property<br/>or class cover it?) -- No --> q2(Is it a free-text statement<br/>with its own author and date?)
+    q2 -- No --> q3(Is it CycloneDX properties<br/>carried over to SPDX?)
+    q3 -- No --> q4(Is it string key-value pairs,<br/>in SPDX 3.1 or later?)
+    q4 -- No --> a5[[Custom extension:<br/>this guide]]
+    q1 -- Yes --> a1[Use that property or class]
+    q2 -- Yes --> a2[Annotation]
+    q3 -- Yes --> a3[CdxPropertiesExtension]
+    q4 -- Yes --> a4[additionalInformation]
+```
+
+If the information would be useful to others, consider asking SPDX to add it
+to the SPDX model as standard classes and properties, so that it no longer
+needs an extension. A working extension is a good basis for such a request.
 
 ## Step 1: choose a namespace
 
@@ -65,6 +85,40 @@ The SyntheticData extension has five definitions:
 | `DataGenerationMethodType` | vocabulary | `humanGenerated`, `machineGenerated`, `mixed`, `noAssertion` | |
 | `syntheticFraction` | data property | `xsd:decimal`, 0 to 1 | 0..1 |
 | `generatorModel` | object property | `ai_AIPackage` | 0..* |
+
+How the extension fits into an SPDX document:
+
+```mermaid
+classDiagram
+    direction LR
+    class DatasetPackage {
+        <<SPDX Element>>
+    }
+    class Extension {
+        <<SPDX, abstract>>
+    }
+    class SyntheticDataExtension {
+        syntheticFraction : xsd decimal, 0..1
+    }
+    class DataGenerationMethodType {
+        <<vocabulary>>
+        humanGenerated
+        machineGenerated
+        mixed
+        noAssertion
+    }
+    class AIPackage {
+        <<SPDX Element>>
+    }
+    DatasetPackage *-- "0..*" Extension : extension
+    Extension <|-- SyntheticDataExtension
+    SyntheticDataExtension --> "1" DataGenerationMethodType : generationMethod
+    SyntheticDataExtension --> "0..*" AIPackage : generatorModel
+```
+
+The extension object belongs to one Element (here, the DatasetPackage) through
+that Element's `extension` property. It can refer to other Elements, such as
+the AIPackage, by their `spdxId`.
 
 Things to decide for each property:
 
@@ -139,7 +193,8 @@ The SPDX IRIs in it (`spdx-ext:`, `spdx-ai:`) are those of SPDX 3.0.1. SPDX
 reference to an AIPackage that is described in another document fails it,
 unless that document is validated together with this one.
 
-If you may later propose the extension to SPDX, also write the definitions in
+If you may later ask SPDX to add these classes and properties to the SPDX
+model itself (as standard ones, no longer an extension), also write them in
 the Markdown format of the [SPDX 3 model][spdx-3-model] (one file per class,
 property and vocabulary). That is the format SPDX itself is written in.
 
@@ -259,7 +314,16 @@ fixed.
 
 ## Step 5: validate
 
-Validation has two parts.
+Validation has two parts, and each checks something the other does not:
+
+```mermaid
+flowchart LR
+    doc[synthetic-data.spdx3.json]
+    doc --> v1[spdx3-validate<br/>SPDX JSON schema and SHACL]
+    doc --> v2[pySHACL<br/>synthetic-data.ttl]
+    v1 --> r1([Does the extension fit SPDX?])
+    v2 --> r2([Does the extension data follow your rules?])
+```
 
 **SPDX.** Check the document against the SPDX model with
 [spdx3-validate](https://github.com/JPEWdev/spdx3-validate):
@@ -305,8 +369,9 @@ read a document with your extension and write it back, and check that:
   validators can find it.
 - Document each class, property and vocabulary entry for humans.
 - Version it, and keep old versions available.
-- If the extension fills a general gap in SPDX, propose it in
-  [spdx/spdx-3-model][spdx-3-model], with your definition and examples.
+- If the extension fills a general gap in SPDX, propose in
+  [spdx/spdx-3-model][spdx-3-model] that its classes and properties be added
+  to the SPDX model, with your definition and examples.
 
 ## Summary
 
@@ -323,3 +388,5 @@ read a document with your extension and write it back, and check that:
 [Class_Annotation]: https://spdx.github.io/spdx-spec/v3.0.1/model/Core/Classes/Annotation/
 [Class_CdxPropertiesExtension]: https://spdx.github.io/spdx-spec/v3.0.1/model/Extension/Classes/CdxPropertiesExtension/
 [Class_Extension]: https://spdx.github.io/spdx-spec/v3.0.1/model/Extension/Classes/Extension/
+[Property_additionalInformation]: https://spdx.github.io/spdx-spec/v3.1-dev/model/Core/Properties/additionalInformation/
+[Property_additionalInformationSpecification]: https://spdx.github.io/spdx-spec/v3.1-dev/model/Core/Properties/additionalInformationSpecification/
