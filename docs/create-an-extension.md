@@ -3,6 +3,7 @@ SPDX-License-Identifier: Community-Spec-1.0
 tags:
   - reference
   - v3.0
+  - v3.1
 ---
 
 # Creating an SPDX 3 extension
