@@ -25,15 +25,20 @@ already exists:
    data (Software, AI, Dataset, Security, and others). Ask on the SPDX mailing
    lists or open an issue in [spdx/spdx-3-model][spdx-3-model] if you are not
    sure.
-2. **An [Annotation][Class_Annotation]**, for a free-text statement about an
-   Element, with its own author and date.
-3. **The [additionalInformation][Property_additionalInformation] property**
+2. **A [Relationship][Class_Relationship]**, for how the Element relates to
+   other Elements (for example, that a model `generates` a dataset). Choose a
+   `relationshipType` that fits.
+3. **An [Annotation][Class_Annotation]**, for an assertion that someone makes
+   about the Element, such as the result of a review. An Annotation has its
+   own author and date, and states that person's view of the Element. It is
+   not for describing the Element itself.
+4. **The [additionalInformation][Property_additionalInformation] property**
    (SPDX 3.1 and later), for simple key-value pairs where both key and value
    are strings. It is available on software artifacts, hardware, services,
    actions and processes. Use
    [additionalInformationSpecification][Property_additionalInformationSpecification]
    to point to the Specification that defines what the keys and values mean.
-4. **A custom extension**, when you need structured data with its own types:
+5. **A custom extension**, when you need structured data with its own types:
    values from a fixed list, numbers, dates, or references to other Elements.
    That is what this guide covers.
 
@@ -43,11 +48,13 @@ SPDX, for example when converting a CycloneDX document. Use it only for that.
 
 ```mermaid
 flowchart TD
-    q1(Does an SPDX property<br/>or class cover it?) -- No --> q2(Is it a free-text statement<br/>with its own author and date?)
+    q1(Does an SPDX property<br/>or class cover it?) -- No --> q0(Is it how the Element relates<br/>to other Elements?)
+    q0 -- No --> q2(Is it someone's assertion<br/>about the Element, such as a review?)
     q2 -- No --> q3(Is it CycloneDX properties<br/>carried over to SPDX?)
     q3 -- No --> q4(Is it string key-value pairs,<br/>in SPDX 3.1 or later?)
     q4 -- No --> a5[[Custom extension:<br/>this guide]]
     q1 -- Yes --> a1[Use that property or class]
+    q0 -- Yes --> a0[Relationship]
     q2 -- Yes --> a2[Annotation]
     q3 -- Yes --> a3[CdxPropertiesExtension]
     q4 -- Yes --> a4[additionalInformation]
@@ -137,8 +144,10 @@ Things to decide for each property:
 
 An extension is not an Element: it has no `spdxId` and no `creationInfo`.
 Attach each extension instance to one Element only, and leave it without an
-`@id` (a blank node). If the information needs its own identity
-or provenance, use an Element (for example an Annotation) instead.
+`@id` (a blank node). An extension describes the Element it is attached to.
+If the information needs its own identity or provenance, it is not part of
+the Element: use an Element instead, such as an Annotation for someone's
+assertion about the Element, or a Relationship to other Elements.
 
 ## Step 3: write the definition
 
@@ -389,5 +398,6 @@ read a document with your extension and write it back, and check that:
 [Class_Annotation]: https://spdx.github.io/spdx-spec/v3.0.1/model/Core/Classes/Annotation/
 [Class_CdxPropertiesExtension]: https://spdx.github.io/spdx-spec/v3.0.1/model/Extension/Classes/CdxPropertiesExtension/
 [Class_Extension]: https://spdx.github.io/spdx-spec/v3.0.1/model/Extension/Classes/Extension/
+[Class_Relationship]: https://spdx.github.io/spdx-spec/v3.0.1/model/Core/Classes/Relationship/
 [Property_additionalInformation]: https://spdx.github.io/spdx-spec/v3.1-dev/model/Core/Properties/additionalInformation/
 [Property_additionalInformationSpecification]: https://spdx.github.io/spdx-spec/v3.1-dev/model/Core/Properties/additionalInformationSpecification/
