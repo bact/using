@@ -89,8 +89,8 @@ The SyntheticData extension has five definitions:
 | Definition | Kind | Range | Cardinality |
 | --- | --- | --- | --- |
 | `SyntheticDataExtension` | class, subclass of `Extension` | | |
-| `generationMethod` | object property | `DataGenerationMethodType` | 1..1 |
-| `DataGenerationMethodType` | vocabulary | `humanGenerated`, `machineGenerated`, `mixed`, `noAssertion` | |
+| `generationMethod` | object property | `DataGenerationMethod` | 1..1 |
+| `DataGenerationMethod` | vocabulary | `humanGenerated`, `machineGenerated`, `mixed`, `noAssertion` | |
 | `syntheticFraction` | data property | `xsd:decimal`, 0 to 1 | 0..1 |
 | `generatorModel` | object property | `ai_AIPackage` | 0..* |
 
@@ -108,7 +108,7 @@ classDiagram
     class SyntheticDataExtension {
         syntheticFraction : xsd decimal, 0..1
     }
-    class DataGenerationMethodType {
+    class DataGenerationMethod {
         <<vocabulary>>
         humanGenerated
         machineGenerated
@@ -120,7 +120,7 @@ classDiagram
     }
     DatasetPackage *-- "0..*" Extension : extension
     Extension <|-- SyntheticDataExtension
-    SyntheticDataExtension --> "1" DataGenerationMethodType : generationMethod
+    SyntheticDataExtension --> "1" DataGenerationMethod : generationMethod
     SyntheticDataExtension --> "0..*" AIPackage : generatorModel
 ```
 
@@ -164,7 +164,7 @@ SHACL for the constraints, in the same style as the
 @prefix spdx-ext: <https://spdx.org/rdf/3.0.1/terms/Extension/> .
 @prefix spdx-ai: <https://spdx.org/rdf/3.0.1/terms/AI/> .
 @prefix sd: <https://example.org/spdx3-ext/synthetic-data/> .
-@prefix sdgm: <https://example.org/spdx3-ext/synthetic-data/DataGenerationMethodType/> .
+@prefix sdgm: <https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/> .
 
 sd:SyntheticDataExtension a owl:Class, sh:NodeShape ;
     sh:targetClass sd:SyntheticDataExtension ;
@@ -182,13 +182,13 @@ sd:SyntheticDataExtension a owl:Class, sh:NodeShape ;
         sh:path sd:generatorModel ;
         sh:class spdx-ai:AIPackage ] .
 
-sd:DataGenerationMethodType a owl:Class .
-sdgm:humanGenerated a owl:NamedIndividual, sd:DataGenerationMethodType .
-sdgm:machineGenerated a owl:NamedIndividual, sd:DataGenerationMethodType .
-sdgm:mixed a owl:NamedIndividual, sd:DataGenerationMethodType .
-sdgm:noAssertion a owl:NamedIndividual, sd:DataGenerationMethodType .
+sd:DataGenerationMethod a owl:Class .
+sdgm:humanGenerated a owl:NamedIndividual, sd:DataGenerationMethod .
+sdgm:machineGenerated a owl:NamedIndividual, sd:DataGenerationMethod .
+sdgm:mixed a owl:NamedIndividual, sd:DataGenerationMethod .
+sdgm:noAssertion a owl:NamedIndividual, sd:DataGenerationMethod .
 
-sd:generationMethod a owl:ObjectProperty ; rdfs:range sd:DataGenerationMethodType .
+sd:generationMethod a owl:ObjectProperty ; rdfs:range sd:DataGenerationMethod .
 sd:syntheticFraction a owl:DatatypeProperty ; rdfs:range xsd:decimal .
 sd:generatorModel a owl:ObjectProperty ; rdfs:range spdx-ai:AIPackage .
 ```
@@ -286,7 +286,7 @@ as `synthetic-data.spdx3.json`):
         {
           "type": "https://example.org/spdx3-ext/synthetic-data/SyntheticDataExtension",
           "https://example.org/spdx3-ext/synthetic-data/generationMethod": {
-            "@id": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethodType/mixed"
+            "@id": "https://example.org/spdx3-ext/synthetic-data/DataGenerationMethod/mixed"
           },
           "https://example.org/spdx3-ext/synthetic-data/syntheticFraction": {
             "@value": "0.35",
