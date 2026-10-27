@@ -1,4 +1,6 @@
 ---
+SPDX-FileContributor: Arthit Suriyawongkul
+SPDX-FileType: DOCUMENTATION
 SPDX-License-Identifier: Community-Spec-1.0
 tags:
   - reference
